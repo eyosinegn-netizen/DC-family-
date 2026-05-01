@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DC Family</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+      text-align: center;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url('family.jpg') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      top: 0;
+      left: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 12px;
+      width: 240px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+    }
+
+    .results {
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      width: 270px;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      margin: 10px 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>👨‍👩‍👧 DC Family</h1>
+    <p>Welcome to our lovely family ❤️</p>
+
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Search family member..." onkeyup="searchPerson()">
+    </div>
+  </div>
+</div>
+
+<div class="results" id="output"></div>
+
+<script>
+  const family = {
+    "shawa": {
+      name: "ShawaSeged",
+      age: 57,
+      nickname: "Father",
+      personality: "Fun and humorous, but easily irritated sometimes",
+      image: "shawa.jpg"
+    },
+    "belletech": {
+      name: "Belletech",
+      age: 56,
+      nickname: "Mother",
+      personality: "Very kind, loving, and caring mother",
+      image: "belletech.jpg"
+    },
+    "dereje": {
+      name: "Dereje",
+      age: 36,
+      nickname: "Big Brother",
+      personality: "Genius in learning, smart, and fun like his father",
+      image: "dereje.jpg"
+    },
+    "hermela": {
+      name: "Hermela",
+      age: 30,
+      nickname: "Sister-in-law",
+      personality: "Beautiful, kind, and lovely person",
+      image: "hermela.jpg"
+    },
+    "saron": {
+      name: "Saron",
+      age: 35,
+      nickname: "Middle Sister",
+      personality: "Very beautiful, cute, and gentle like her mother",
+      image: "saron.jpg"
+    },
+    "hlina": {
+      name: "Hlina",
+      age: 25,
+      nickname: "Second Sister",
+      personality: "Very beautiful, the most attractive in the family, cute and short, gets tired easily",
+      image: "hlina.jpg"
+    },
+    "eyosyias": {
+      name: "Eyosyias",
+      age: 19,
+      nickname: "Young Brother",
+      personality: "Gangster style, footballer, quiet and calm in the family",
+      image: "eyosyias.jpg"
+    }
+  };
+
+  function searchPerson() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let output = "";
+
+    for (let key in family) {
+      if (key.includes(input)) {
+        let p = family[key];
+        output += `
+          <div class="card">
+            <img src="${p.image}">
+            <h2>${p.name}</h2>
+            <p><b>Age:</b> ${p.age}</p>
+            <p><b>Nickname:</b> ${p.nickname}</p>
+            <p><b>Personality:</b> ${p.personality}</p>
+          </div>
+        `;
+      }
+    }
+
+    document.getElementById("output").innerHTML = output || "<p>No result ❌</p>";
+  }
+</script>
+
+</body>
+</html>
